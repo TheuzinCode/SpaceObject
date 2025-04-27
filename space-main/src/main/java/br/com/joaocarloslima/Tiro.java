@@ -5,19 +5,23 @@ import javafx.scene.image.ImageView;
 public class Tiro extends Asset {
     
     private int poder;
-    
+
+  
 
     public Tiro(int x, int y, int velocidade, Direcao direcao, int poder){
-        super(y, x, velocidade, direcao);
+        super(x, y, velocidade, direcao);
         this.poder = poder;
-        String path = "file:src/main/java/br/com/joaocarloslima/images/laser/laser" + poder + ".png";
-        ImageView imagem = new ImageView("file:src/main/java/br/com/joaocarloslima/images/laser/laser" + poder + ".png");
+        String path = "images/laser/laser" + poder + ".png";
+        System.out.println("Carregando imagem: " + path);
+        ImageView imagem = new ImageView(App.class.getResource(path).toString());
         setImagem(imagem);
     }
+
 
     public int getPoder() {
         return poder;
     }
+
     public void setPoder(int poder) {
         this.poder = poder;
     }

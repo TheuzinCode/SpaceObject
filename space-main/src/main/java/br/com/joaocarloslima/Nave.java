@@ -4,25 +4,29 @@ import javafx.scene.image.ImageView;
 
 public class Nave extends Asset {
 
-    public static Object atirar;
-
-
     public Nave(int x, int y, int velocidade, Direcao direcao) {
-        super(y, x, velocidade, direcao);
-        String path = "file:src/main/resources/br/com/joaocarloslima/images/ships/playerShip1_blue.png";
-        ImageView imagem = new ImageView("file:src/main/resources/br/com/joaocarloslima/images/ships/playerShip1_blue.png");
+        super(x, y, velocidade, direcao);
+        ImageView imagem = new ImageView("file:src/main/java/br/com/joaocarloslima/images/ships/playerShip1_blue.png");
         setImagem(imagem);
     }
 
     public Tiro atirar(int poder) {
-        Tiro novoTiro = new Tiro(this.getX(), this.getY(), this.getVelocidade(), getDirecao(), poder);
-        return novoTiro;
+        Tiro tiro = new Tiro(getX(), getY(), 10, Direcao.CIMA, poder);
+        return tiro;
     }
+    
 
+    public void mover() {
+        super.mover();
+        getImagem().setLayoutX(getX());
+        getImagem().setLayoutY(getY());
 
-    @Override
-    public void mover(){
-        Math.min(0, getX());
-        Math.max(getX(), getX()- 50);
+        if (getX() < 0) {
+            setX(0);
+        }
+        if (getX() > 640 - 50) {
+            setX(590);
+            
+        }
     }
 }
